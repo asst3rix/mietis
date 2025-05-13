@@ -79,6 +79,11 @@ body {
 
 #header {
     display: flex;
+    justify-content: space-between;
+}
+
+#push-right {
+    display: flex;
 }
 
 #months {
