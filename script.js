@@ -1,7 +1,13 @@
-const days = document.querySelector("#days");
-
 const today = new Date();
-createMonth(getMonthData(today.getFullYear(), today.getMonth()));
+const days = document.querySelector("#days");
+const monthsSelector = document.querySelector("#monthsSelector");
+const yearsSelector = document.querySelector("#yearsSelector");
+
+monthsSelector.value = today.getMonth();
+const year = yearsSelector.textContent;
+const month = monthsSelector.value;
+
+createMonth(getMonthData(year, month));
 
 function getMonthData(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
