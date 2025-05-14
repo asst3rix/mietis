@@ -1,4 +1,7 @@
 const today = new Date();
+const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const monthOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 const days = document.querySelector("#days");
 const selectedDay = document.querySelector("#selectedDay");
 const monthsSelector = document.querySelector("#monthsSelector");
@@ -60,7 +63,10 @@ function createDay(numberAssociated, cssClass, isToday = false) {
         day.addEventListener("click", () => {
             // We delete previous data
             wipe(selectedDay);
-            dayDetails();
+            const dayLabel = document.createElement("p");
+            const dayIndex = new Date(parseInt(yearsSelector.textContent), parseInt(monthsSelector.value), numberAssociated).getDay();
+            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[monthsSelector.value];
+            selectedDay.appendChild(dayLabel);
         });
     }
 
