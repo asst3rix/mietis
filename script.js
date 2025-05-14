@@ -6,6 +6,10 @@ const monthDownButton = document.querySelector("#monthDown");
 const monthUpButton = document.querySelector("#monthUp");
 const todayButton = document.querySelector("#today");
 
+console.log(today.getDate());
+console.log(today.getMonth());
+console.log(today.getFullYear());
+
 setToday();
 
 /**** EVENT LISTENERS ****/
@@ -42,14 +46,17 @@ function getMonthData(year, month) {
     const totalDays = new Date(year, month + 1, 0).getDate();
     const totalDaysPreviousMonth = new Date(year, month, 0).getDate();
 
-    return { firstDay, lastDay, totalDays, totalDaysPreviousMonth };
+    return { firstDay, lastDay, totalDays, totalDaysPreviousMonth, month };
 }
 
 // Create a day with his number associated.
-function createDay(numberAssociated, cssClass) {
+function createDay(numberAssociated, cssClass, isToday = false) {
     const day = document.createElement("div");
     day.textContent = numberAssociated.toString();
     day.classList.add(cssClass);
+    if (isToday) {
+        day.classList.add("isToday");
+    }
     days.appendChild(day);
 }
 
@@ -75,7 +82,14 @@ function createMonth(month) {
     /**** CURRENT MONTH CREATION ****/
     // We create the current month from 1 to month.totalDays.
     for (let dayNumber = 1; dayNumber <= month.totalDays; dayNumber++) {
-        createDay(dayNumber, "current-month");
+        console.log(month.month);
+        console.log(today.getMonth());
+        if (dayNumber === today.getDate() && month.month === today.getMonth() && parseInt(yearsSelector.textContent) === today.getFullYear()) {
+            const isToday = true;
+            createDay(dayNumber, "current-month", isToday);
+        } else {
+            createDay(dayNumber, "current-month");
+        }
     }
 
     /**** NEXT MONTH CREATION ****/
