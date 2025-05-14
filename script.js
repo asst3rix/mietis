@@ -1,14 +1,12 @@
 const today = new Date();
 const days = document.querySelector("#days");
+const selectedDay = document.querySelector("#selectedDay");
 const monthsSelector = document.querySelector("#monthsSelector");
 const yearsSelector = document.querySelector("#yearsSelector");
 const monthDownButton = document.querySelector("#monthDown");
 const monthUpButton = document.querySelector("#monthUp");
 const todayButton = document.querySelector("#today");
-
-console.log(today.getDate());
-console.log(today.getMonth());
-console.log(today.getFullYear());
+const currentMonthDays = document.querySelectorAll(".current-month");
 
 setToday();
 
@@ -57,14 +55,21 @@ function createDay(numberAssociated, cssClass, isToday = false) {
     if (isToday) {
         day.classList.add("isToday");
     }
+
+    if (cssClass === "current-month") {
+        day.addEventListener("click", () => {
+            // We delete previous data
+            wipe(selectedDay);
+            dayDetails();
+        });
+    }
+
     days.appendChild(day);
 }
 
 function createMonth(month) {
     // We delete the existing month
-    while (days.firstChild) {
-        days.firstChild.remove()
-    }
+    wipe(days);
 
     /**** PREVIOUS MONTH CREATION ****/
     // If month.firstDay === Sunday, we need to show 6 days.
@@ -82,8 +87,6 @@ function createMonth(month) {
     /**** CURRENT MONTH CREATION ****/
     // We create the current month from 1 to month.totalDays.
     for (let dayNumber = 1; dayNumber <= month.totalDays; dayNumber++) {
-        console.log(month.month);
-        console.log(today.getMonth());
         if (dayNumber === today.getDate() && month.month === today.getMonth() && parseInt(yearsSelector.textContent) === today.getFullYear()) {
             const isToday = true;
             createDay(dayNumber, "current-month", isToday);
@@ -107,4 +110,10 @@ function createMonth(month) {
 function setToday() {
     monthsSelector.value = today.getMonth();
     changeMonth();
+}
+
+function wipe(element) {
+    while (element.firstChild) {
+        element.firstChild.remove()
+    }
 }
