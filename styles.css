@@ -117,3 +117,12 @@ body {
 #days div {
     flex: 0 0 calc(100% / 7);
 }
+
+.previous-month,
+.next-month {
+    color: lightgray;
+}
+
+.isToday {
+    background-color: lightgreen;
+}
