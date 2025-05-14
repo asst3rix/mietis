@@ -80,6 +80,8 @@ body {
 #header {
     display: flex;
     justify-content: space-between;
+    margin: 15px 0 30px 0;
+    border: 1px solid black;
 }
 
 #push-right {
@@ -88,17 +90,21 @@ body {
 
 #months {
     display: flex;
+    text-align: center;
 }
 
 #selectedDay {
     display: flex;
     flex: 1;
+    border: 1px solid black;
+    margin-right: 30px;
 }
 
 #currentMonth {
     display: flex;
     flex-direction: column;
     flex: 3;
+    border: 1px solid black;
 }
 
 #dayLabels {
@@ -125,4 +131,10 @@ body {
 
 .isToday {
     background-color: lightgreen;
+}
+
+#footer {
+    margin-top: 30px;
+    border: 1px solid black;
+    text-align: center;
 }
