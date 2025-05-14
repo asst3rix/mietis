@@ -38,20 +38,20 @@ todayButton.addEventListener("click", setToday);
 function changeMonth() {
     const month = parseInt(monthsSelector.value);
     const year = parseInt(yearsSelector.textContent);
-    createMonth(getMonthData(year, month));
+    createMonth(getMonthInfo(year, month));
 }
 
-function getMonthData(year, month) {
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDay = new Date(year, month + 1, 0).getDay();
-    const totalDays = new Date(year, month + 1, 0).getDate();
-    const totalDaysPreviousMonth = new Date(year, month, 0).getDate();
+function getMonthInfo(year, indexMonth) {
+    const indexFirstDay = new Date(year, indexMonth, 1).getDay();
+    const indexLastDay = new Date(year, indexMonth + 1, 0).getDay();
+    const totalDays = new Date(year, indexMonth + 1, 0).getDate();
+    const totalDaysPreviousMonth = new Date(year, indexMonth, 0).getDate();
 
-    return { firstDay, lastDay, totalDays, totalDaysPreviousMonth, month };
+    return { indexFirstDay, indexLastDay, totalDays, totalDaysPreviousMonth, indexMonth, year };
 }
 
 // Create a day with his number associated.
-function createDay(numberAssociated, cssClass, isToday = false) {
+function createDay(monthInfo, numberAssociated, cssClass, isToday = false) {
     const day = document.createElement("div");
     day.textContent = numberAssociated.toString();
     day.classList.add(cssClass);
@@ -64,8 +64,8 @@ function createDay(numberAssociated, cssClass, isToday = false) {
             // We delete previous data
             wipe(selectedDay);
             const dayLabel = document.createElement("p");
-            const dayIndex = new Date(parseInt(yearsSelector.textContent), parseInt(monthsSelector.value), numberAssociated).getDay();
-            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[monthsSelector.value];
+            const dayIndex = new Date(monthInfo.year, monthInfo.indexMonth, numberAssociated).getDay();
+            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[monthInfo.indexMonth];
             selectedDay.appendChild(dayLabel);
         });
     }
@@ -80,35 +80,35 @@ function createMonth(month) {
     /**** PREVIOUS MONTH CREATION ****/
     // If month.firstDay === Sunday, we need to show 6 days.
     // Else we need to show (month.firstDay - 1) days.
-    const daysToShow = month.firstDay === 0 ? 6 : month.firstDay - 1;
+    const daysToShow = month.indexFirstDay === 0 ? 6 : month.indexFirstDay - 1;
     // Example here with August 2025:
     // month.totalDaysPreviousMonth = 31
     // daysToShow = 4 (5 (Friday) - 1)
     // startDay = 28.
     const startDay = month.totalDaysPreviousMonth - daysToShow + 1;
     for (let dayNumber = startDay; dayNumber <= month.totalDaysPreviousMonth; dayNumber++) {
-        createDay(dayNumber, "previous-month");
+        createDay(month, dayNumber, "previous-month");
     }
 
     /**** CURRENT MONTH CREATION ****/
     // We create the current month from 1 to month.totalDays.
     for (let dayNumber = 1; dayNumber <= month.totalDays; dayNumber++) {
-        if (dayNumber === today.getDate() && month.month === today.getMonth() && parseInt(yearsSelector.textContent) === today.getFullYear()) {
+        if (dayNumber === today.getDate() && month. indexMonth === today.getMonth() && month.year === today.getFullYear()) {
             const isToday = true;
-            createDay(dayNumber, "current-month", isToday);
+            createDay(month, dayNumber, "current-month", isToday);
         } else {
-            createDay(dayNumber, "current-month");
+            createDay(month, dayNumber, "current-month");
         }
     }
 
     /**** NEXT MONTH CREATION ****/
-    if (month.lastDay !== 0) {
+    if (month.indexLastDay !== 0) {
         // We create the next month from 1 to how many days we can fit in the remaining week.
         // We use month.lastDay to calculate how many days we need to create.
         // Example on June 2025:
         // month.lastDay = 1 (Monday), so we need to create 6 days.
-        for (let dayNumber = 1; dayNumber <= 7 - month.lastDay; dayNumber++) {
-            createDay(dayNumber, "next-month");
+        for (let dayNumber = 1; dayNumber <= 7 - month.indexLastDay; dayNumber++) {
+            createDay(month, dayNumber, "next-month");
         }
     }
 }
