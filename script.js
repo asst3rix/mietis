@@ -2,14 +2,25 @@ const today = new Date();
 const days = document.querySelector("#days");
 const monthsSelector = document.querySelector("#monthsSelector");
 const yearsSelector = document.querySelector("#yearsSelector");
+const monthDown = document.querySelector("#monthDown");
+const monthUp = document.querySelector("#monthUp");
 
 monthsSelector.value = today.getMonth();
-const year = parseInt(yearsSelector.textContent);
-const month = parseInt(monthsSelector.value);
-
-createMonth(getMonthData(year, month));
+changeMonth();
 
 monthsSelector.addEventListener("change", changeMonth);
+monthDown.addEventListener("click", () => {
+    if (monthsSelector.value !== "0") {
+        monthsSelector.value--;
+    }
+    changeMonth();
+});
+monthUp.addEventListener("click", () => {
+    if (monthsSelector.value !== "11") {
+        monthsSelector.value++;
+    }
+    changeMonth();
+});
 
 function changeMonth() {
     const month = parseInt(monthsSelector.value);
@@ -38,7 +49,7 @@ function createMonth(month) {
     while (days.firstChild) {
         days.firstChild.remove()
     }
-    
+
     // For the previous month:
     // If month.firstDay === Sunday, we need to show 6 days.
     // Else we need to show (month.firstDay - 1) days.
