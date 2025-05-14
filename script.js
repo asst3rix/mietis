@@ -2,25 +2,33 @@ const today = new Date();
 const days = document.querySelector("#days");
 const monthsSelector = document.querySelector("#monthsSelector");
 const yearsSelector = document.querySelector("#yearsSelector");
-const monthDown = document.querySelector("#monthDown");
-const monthUp = document.querySelector("#monthUp");
+const monthDownButton = document.querySelector("#monthDown");
+const monthUpButton = document.querySelector("#monthUp");
+const todayButton = document.querySelector("#today");
 
-monthsSelector.value = today.getMonth();
-changeMonth();
+setToday();
+
+/**** EVENT LISTENERS ****/
 
 monthsSelector.addEventListener("change", changeMonth);
-monthDown.addEventListener("click", () => {
+
+monthDownButton.addEventListener("click", () => {
     if (monthsSelector.value !== "0") {
         monthsSelector.value--;
     }
     changeMonth();
 });
-monthUp.addEventListener("click", () => {
+
+monthUpButton.addEventListener("click", () => {
     if (monthsSelector.value !== "11") {
         monthsSelector.value++;
     }
     changeMonth();
 });
+
+todayButton.addEventListener("click", setToday);
+
+/**** FUNCTIONS ****/
 
 function changeMonth() {
     const month = parseInt(monthsSelector.value);
@@ -77,4 +85,9 @@ function createMonth(month) {
             createDay(i);
         }
     }
+}
+
+function setToday() {
+    monthsSelector.value = today.getMonth();
+    changeMonth();
 }
