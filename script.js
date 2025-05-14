@@ -51,7 +51,7 @@ function getMonthInfo(year, indexMonth) {
 }
 
 // Create a day with his number associated.
-function createDay(monthInfo, numberAssociated, cssClass, isToday = false) {
+function createDay(month, numberAssociated, cssClass, isToday = false) {
     const day = document.createElement("div");
     day.textContent = numberAssociated.toString();
     day.classList.add(cssClass);
@@ -64,8 +64,8 @@ function createDay(monthInfo, numberAssociated, cssClass, isToday = false) {
             // We delete previous data
             wipe(selectedDay);
             const dayLabel = document.createElement("p");
-            const dayIndex = new Date(monthInfo.year, monthInfo.indexMonth, numberAssociated).getDay();
-            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[monthInfo.indexMonth];
+            const dayIndex = new Date(month.year, month.indexMonth, numberAssociated).getDay();
+            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[month.indexMonth];
             selectedDay.appendChild(dayLabel);
         });
     }
@@ -78,7 +78,7 @@ function createMonth(month) {
     wipe(days);
 
     /**** PREVIOUS MONTH CREATION ****/
-    // If month.firstDay === Sunday, we need to show 6 days.
+    // If month.indexFirstDay === Sunday, we need to show 6 days.
     // Else we need to show (month.firstDay - 1) days.
     const daysToShow = month.indexFirstDay === 0 ? 6 : month.indexFirstDay - 1;
     // Example here with August 2025:
@@ -104,9 +104,9 @@ function createMonth(month) {
     /**** NEXT MONTH CREATION ****/
     if (month.indexLastDay !== 0) {
         // We create the next month from 1 to how many days we can fit in the remaining week.
-        // We use month.lastDay to calculate how many days we need to create.
+        // We use month.indexLastDay to calculate how many days we need to create.
         // Example on June 2025:
-        // month.lastDay = 1 (Monday), so we need to create 6 days.
+        // month.indexLastDay = 1 (Monday), so we need to create 6 days.
         for (let dayNumber = 1; dayNumber <= 7 - month.indexLastDay; dayNumber++) {
             createDay(month, dayNumber, "next-month");
         }
