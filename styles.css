@@ -77,10 +77,15 @@ html {
 }
 
 body {
-    background-color: #537D5D;
     width: 70%;
     margin: auto;
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.25rem;
+}
+
+body,
+#monthsSelector {
+    background-color: #ECEBDE;
 }
 
 #header {
@@ -92,13 +97,12 @@ body {
 
 #push-right {
     display: flex;
-    gap: 10px;
+    gap: 30px;
 }
 
 #monthsSelector {
     border: none;
     text-align: center;
-    background-color: #537D5D;
 
     /*remove the arrow from the select*/
     appearance: none;
@@ -113,8 +117,8 @@ body {
 }
 
 .downUpButtons {
-    border-radius: 50px;
-    width: 26px;
+    border-radius: 50%;
+    width: 32px;
 }
 
 #today {
@@ -124,33 +128,33 @@ body {
 
 .downUpButtons,
 #today {
-    background-color: #73946B;
+    background-color: #D4E7C5;
     border: none;
 }
 
 #months {
     display: flex;
     text-align: center;
+    height: 500px;
+    /*border-radius: 0px 2px 2px 2px;
+    box-shadow: 4px 4px 1px 8px black;*/
 }
 
 #selectedDay {
     display: flex;
     flex: 1;
-    margin-right: 30px;
+    background-color: #99BC85;
 }
 
 #currentMonth {
     display: flex;
+    background-color: white;
     flex-direction: column;
     flex: 3;
 }
 
 #selectedDay,
 #currentMonth {
-    background-color: #73946B;
-    height: 500px;
-    border-radius: 3px;
-    box-shadow: 5px 5px 1px 9px black;
     padding: 10px;
 }
 
@@ -177,7 +181,7 @@ body {
 }
 
 .isToday {
-    background-color: #D2D0A0;
+    background-color: #99BC85;
 }
 
 #footer {
