@@ -54,9 +54,11 @@ function getMonthInfo(year, indexMonth) {
 function createDay(month, numberAssociated, cssClass, isToday = false) {
     const day = document.createElement("div");
     day.textContent = numberAssociated.toString();
-    day.classList.add(cssClass);
+    day.classList.add("day");
     if (isToday) {
         day.classList.add("isToday");
+    } else {
+        day.classList.add(cssClass);
     }
 
     if (cssClass === "current-month") {
@@ -70,7 +72,10 @@ function createDay(month, numberAssociated, cssClass, isToday = false) {
         });
     }
 
-    days.appendChild(day);
+    const calendarCell = document.createElement("div");
+    calendarCell.classList.add("calendarCell");
+    calendarCell.appendChild(day);
+    days.appendChild(calendarCell);
 }
 
 function createMonth(month) {
