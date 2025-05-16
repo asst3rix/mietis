@@ -11,31 +11,66 @@
 
 <body>
     <div id="header">
-        <div id="push-right">
-            <button id="monthDown" class="downUpButtons">&lt;</button>
-            <select name="monthsSelector" id="monthsSelector">
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
-            </select>
-            <button id="monthUp" class="downUpButtons">&gt;</button>
-            <p id="yearsSelector">2025</p>
-        </div>
+        <button id="monthDown" class="downUpButtons"><ion-icon name="chevron-back-outline"></ion-icon></button>
+        <select name="monthsSelector" id="monthsSelector">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+        </select>
+        <button id="monthUp" class="downUpButtons"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+        <p id="yearsSelector">2025</p>
         <button id="today">Today</button>
     </div>
 
     <div id="months">
         <div id="selectedDay">
-            
+            <div id="date">
+                <p>15</p>
+                <p>Thursday</p>
+            </div>
+            <div id="expenses">
+                <div class="expense">
+                    <p class="expenseLabel">Caisse d'Épargne</p>
+                    <p class="expenseTag">Bank</p>
+                    <p class="expenseAmount">-15,95€</p>
+                    <p class="expenseActions"><ion-icon name="create-outline"></ion-icon><ion-icon
+                            name="close-outline"></ion-icon></p>
+                </div>
+                <div class="expense">
+                    <p class="expenseLabel">Caisse d'Épargne</p>
+                    <p class="expenseTag">Bank</p>
+                    <p class="expenseAmount">+5,95€</p>
+                    <p class="expenseActions"><ion-icon name="create-outline"></ion-icon><ion-icon
+                            name="close-outline"></ion-icon></p>
+                </div>
+                <div class="expense">
+                    <p class="expenseLabel">Netflix</p>
+                    <p class="expenseTag">Subscription</p>
+                    <p class="expenseAmount">-13,49€</p>
+                    <p class="expenseActions"><ion-icon name="create-outline"></ion-icon><ion-icon
+                            name="close-outline"></ion-icon></p>
+                </div>
+                <div class="expense">
+                    <p class="expenseLabel">Padel</p>
+                    <p class="expenseTag">Leisure</p>
+                    <p class="expenseAmount">-10,73€</p>
+                    <p class="expenseActions"><ion-icon name="create-outline"></ion-icon><ion-icon
+                            name="close-outline"></ion-icon></p>
+                </div>
+                <p id="total">34,22€</p>
+            </div>
+            <div id="footerExpenses">
+                <button id="addExpenseBtn"><ion-icon name="add-outline"></ion-icon></button>
+            </div>
         </div>
 
         <div id="currentMonth">
@@ -55,6 +90,9 @@
     </div>
 
     <div id="footer">Copyright Tirititi©</div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
