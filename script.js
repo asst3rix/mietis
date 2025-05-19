@@ -9,7 +9,6 @@ const yearsSelector = document.querySelector("#yearsSelector");
 const monthDownButton = document.querySelector("#monthDown");
 const monthUpButton = document.querySelector("#monthUp");
 const todayButton = document.querySelector("#today");
-const currentMonthDays = document.querySelectorAll(".current-month");
 
 setToday();
 
@@ -52,24 +51,33 @@ function getMonthInfo(year, indexMonth) {
 
 // Create a day with his number associated.
 function createDay(month, numberAssociated, cssClass, isToday = false) {
-    const day = document.createElement("div");
+    const calendarCell = document.createElement("div");
+    calendarCell.classList.add("calendarCell");
+    if (isToday) {
+        calendarCell.classList.add("isToday");
+    } else {
+        calendarCell.classList.add(cssClass);
+    }
+
+    const day = document.createElement("p");
     day.textContent = numberAssociated.toString();
     day.classList.add("day");
-    if (isToday) {
-        day.classList.add("isToday");
-    } else {
-        day.classList.add(cssClass);
-    }
 
     if (cssClass === "current-month") {
         day.addEventListener("click", () => {
             showDayDetails(month, numberAssociated);
         });
+
+        const total = document.createElement("p");
+        total.textContent = "34,22€";
+        total.classList.add("total");
+
+        calendarCell.appendChild(day);
+        calendarCell.appendChild(total);
+    } else {
+        calendarCell.appendChild(day);
     }
 
-    const calendarCell = document.createElement("div");
-    calendarCell.classList.add("calendarCell");
-    calendarCell.appendChild(day);
     days.appendChild(calendarCell);
 }
 
