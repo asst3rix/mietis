@@ -133,7 +133,7 @@ body,
     border: none;
 }
 
-#months {
+#calendar {
     display: flex;
     height: auto;
     font-size: 1rem;
@@ -268,6 +268,7 @@ body,
     flex: 0 0 calc(100% / 7);
     height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -278,23 +279,28 @@ body,
     border-radius: 50%;
 }
 
-.previous-month,
-.next-month {
-    opacity: 0.1;
+.total {
+    margin-top: 5px;
+    font-size: 0.8rem;
 }
 
-.current-month {
+.previous-month,
+.next-month {
+    opacity: 0;
+}
+
+.current-month p:first-child {
     background-color: #F9F9F9;
 }
 
-.isToday {
+.isToday p:first-child {
     background-color: #99BC85;
     color: white;
 }
 
 .downUpButtons:hover,
 #today:hover,
-.day:hover,
+.current-month > .day:hover,
 #addExpenseBtn:hover {
     cursor: pointer;
 }
