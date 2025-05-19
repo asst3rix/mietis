@@ -3,7 +3,7 @@ const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 const monthOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const days = document.querySelector("#days");
-const selectedDay = document.querySelector("#selectedDay");
+const date = document.querySelector("#date");
 const monthsSelector = document.querySelector("#monthsSelector");
 const yearsSelector = document.querySelector("#yearsSelector");
 const monthDownButton = document.querySelector("#monthDown");
@@ -63,12 +63,7 @@ function createDay(month, numberAssociated, cssClass, isToday = false) {
 
     if (cssClass === "current-month") {
         day.addEventListener("click", () => {
-            // We delete previous data
-            wipe(selectedDay);
-            const dayLabel = document.createElement("p");
-            const dayIndex = new Date(month.year, month.indexMonth, numberAssociated).getDay();
-            dayLabel.textContent = daysOfWeek[dayIndex] + " " + numberAssociated + " " + monthOfYear[month.indexMonth];
-            selectedDay.appendChild(dayLabel);
+            showDayDetails(month, numberAssociated);
         });
     }
 
@@ -98,7 +93,7 @@ function createMonth(month) {
     /**** CURRENT MONTH CREATION ****/
     // We create the current month from 1 to month.totalDays.
     for (let dayNumber = 1; dayNumber <= month.totalDays; dayNumber++) {
-        if (dayNumber === today.getDate() && month. indexMonth === today.getMonth() && month.year === today.getFullYear()) {
+        if (dayNumber === today.getDate() && month.indexMonth === today.getMonth() && month.year === today.getFullYear()) {
             const isToday = true;
             createDay(month, dayNumber, "current-month", isToday);
         } else {
@@ -119,8 +114,31 @@ function createMonth(month) {
 }
 
 function setToday() {
-    monthsSelector.value = today.getMonth();
+    const currentMonth = today.getMonth();
+    const currentYear = yearsSelector.textContent;
+    const currentMonthInfo = getMonthInfo(currentYear, currentMonth);
+    const dayOfToday = today.getDate();
+
+    monthsSelector.value = currentMonth;
     changeMonth();
+    showDayDetails(currentMonthInfo, dayOfToday);
+}
+
+function showDayDetails(month, numberOfTheDay) {
+    // We delete previous data
+    wipe(date);
+
+    const dayNumber = document.createElement("p");
+    const dayLabel = document.createElement("p");
+
+    // We retrieve which day of the week we want to put
+    const dayIndex = new Date(month.year, month.indexMonth, numberOfTheDay).getDay();
+
+    dayNumber.textContent = numberOfTheDay;
+    dayLabel.textContent = daysOfWeek[dayIndex];
+
+    date.appendChild(dayNumber);
+    date.appendChild(dayLabel);
 }
 
 function wipe(element) {
