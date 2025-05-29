@@ -70,7 +70,7 @@ h6 {
     isolation: isolate;
 }
 
-/****************************************/
+/********** GENERAL **********/
 
 html {
     font-size: 1rem;
@@ -87,6 +87,8 @@ body,
 #monthsSelector {
     background-color: #ECEBDE;
 }
+
+/********** HEADER **********/
 
 #header {
     display: flex;
@@ -112,32 +114,15 @@ body,
     justify-content: center;
 }
 
-.downUpButtons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    aspect-ratio: 1 / 1;
-    padding: 10px;
-}
-
-#today {
-    border-radius: 30px;
-    width: 100px;
-    margin-left: auto;
-}
-
-.downUpButtons,
-#today {
-    background-color: #D4E7C5;
-    border: none;
-}
+/********** CALENDAR **********/
 
 #calendar {
     display: flex;
     height: auto;
     font-size: 1rem;
 }
+
+    /********** LEFT PANEL **********/
 
 #selectedDay {
     display: flex;
@@ -147,12 +132,6 @@ body,
     justify-content: space-between;
     margin-right: 30px;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-}
-
-#push-bottom {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
 #date {
@@ -227,19 +206,7 @@ body,
     padding: 0 10px 10px 10px;
 }
 
-#addExpenseBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    aspect-ratio: 1 / 1;
-    padding: 10px;
-    border: none;
-    border-radius: 50%;
-    background-color: #D4E7C5;
-    color: white;
-    font-size: 2rem;
-}
+    /********** CURRENT MONTH **********/
 
 #currentMonth {
     display: flex;
@@ -293,20 +260,59 @@ body,
     background-color: #F9F9F9;
 }
 
+.current-month p:first-child:hover {
+    cursor: pointer;
+}
+
 .isToday p:first-child {
     background-color: #99BC85;
     color: white;
-}
-
-.downUpButtons:hover,
-#today:hover,
-.current-month > .day:hover,
-#addExpenseBtn:hover {
-    cursor: pointer;
 }
 
 #footer {
     margin-top: 10px;
     padding: 10px;
     text-align: center;
+}
+
+/********** BUTTONS **********/
+
+.downUpBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    padding: 10px;
+}
+
+#todayBtn {
+    border-radius: 30px;
+    width: 100px;
+    margin-left: auto;
+}
+
+#addExpenseBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    aspect-ratio: 1 / 1;
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+}
+
+.downUpBtn,
+#todayBtn,
+#addExpenseBtn {
+    background-color: #D4E7C5;
+    border: none;
+}
+
+.downUpBtn:hover,
+#todayBtn:hover,
+#addExpenseBtn:hover {
+    cursor: pointer;
 }
