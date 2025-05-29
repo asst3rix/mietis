@@ -8,7 +8,7 @@ const monthsSelector = document.querySelector("#monthsSelector");
 const yearsSelector = document.querySelector("#yearsSelector");
 const monthDownButton = document.querySelector("#monthDown");
 const monthUpButton = document.querySelector("#monthUp");
-const todayButton = document.querySelector("#today");
+const todayBtn = document.querySelector("#todayBtn");
 
 setToday();
 
@@ -30,7 +30,7 @@ monthUpButton.addEventListener("click", () => {
     changeMonth();
 });
 
-todayButton.addEventListener("click", setToday);
+todayBtn.addEventListener("click", setToday);
 
 /**** FUNCTIONS ****/
 
@@ -54,6 +54,7 @@ function createDay(month, numberAssociated, cssClass, isToday = false) {
     const calendarCell = document.createElement("div");
     calendarCell.classList.add("calendarCell");
     if (isToday) {
+        calendarCell.classList.add("current-month");
         calendarCell.classList.add("isToday");
     } else {
         calendarCell.classList.add(cssClass);
