@@ -84,7 +84,8 @@ body {
 }
 
 body,
-#monthsSelector {
+#monthsSelector,
+#addExpenseContent {
     background-color: #ECEBDE;
 }
 
@@ -204,6 +205,47 @@ body,
     display: flex;
     background-color: white;
     padding: 0 10px 10px 10px;
+}
+
+#addExpensePopup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(3px);
+}
+
+#addExpenseContent {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 20px;
+    border-radius: 5px;
+    gap: 20px;
+}
+#addExpenseForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+#addExpenseForm > div {
+    display: flex;
+}
+
+#addExpenseForm > div > *:first-child {
+    flex: 1;
+}
+
+#addExpenseForm > div > *:last-child {
+    flex: 3;
 }
 
     /********** CURRENT MONTH **********/

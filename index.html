@@ -69,6 +69,42 @@
             </div>
             <div id="footerExpenses">
                 <button id="addExpenseBtn"><ion-icon name="add-outline"></ion-icon></button>
+                <div id="addExpensePopup">
+                    <div id="addExpenseContent">
+                        <form action="" id="addExpenseForm">
+                            <div>
+                                <label for="amount">Amount: </label>
+                                <input type="number" name="amount" id="amount">
+                            </div>
+
+                            <div>
+                                <label for="label">Label: </label>
+                                <input type="text" name="label" id="label">
+                            </div>
+
+                            <div>
+                                <label for="category">Category: </label>
+                                <select name="category" id="category">
+                                    <option value="0">Rent</option>
+                                    <option value="1">Subscription</option>
+                                    <option value="2">Phone</option>
+                                    <option value="3">Bank</option>
+                                    <option value="4">Health</option>
+                                    <option value="5">Public transport</option>
+                                    <option value="6">Travel</option>
+                                    <option value="7">Groceries</option>
+                                    <option value="8">Purchase</option>
+                                    <option value="9">Bars & restaurants</option>
+                                    <option value="10">Leisure</option>
+                                    <option value="11">Gifts</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <button><ion-icon name="add-outline"></ion-icon></button>
+                        <button>Done</button>
+                    </div>
+                </div>
             </div>
         </div>
 
